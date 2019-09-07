@@ -1,36 +1,45 @@
 
 <ion-header>
-  <ion-navbar>
-    <ion-title>Ajouter natureView</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <form [formGroup]="natureViewForm">
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Nom</ion-label>
-        <ion-input type="text" formControlName="name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Date</ion-label>
-        <ion-datetime displayFormat="D/MM/YYYY" formControlname="date"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Description</ion-label>
-        <ion-textarea formControlname="description"></ion-textarea>
-      </ion-item>
-    </ion-list>
-    <button ion-button full icon-left (click)="onOpenCoordsModal()">
-      <ion-icon name="flag"></ion-icon>
-      Ajouter lieu
-    </button>
-    <ion-list *ngIf="latitude">
-      <ion-item>
-        <p>Latitude : {{ latitude.toFixed(2) }} - Longitude : {{ longitude.toFixed(2) }}</p>
-      </ion-item>
-    </ion-list>
-    <button ion-button full (click)="onSubmitForm()" 
-    [disabled]="natureViewForm.invalid">Enregister</button>
-  </form>
-</ion-content>
+    <ion-navbar>
+      <ion-title>Ajouter natureView</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+    <form [formGroup]="natureViewForm">
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Nom</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Date</ion-label>
+          <ion-datetime displayFormat="D/MM/YYYY" formControlname="date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Description</ion-label>
+          <ion-textarea formControlname="description"></ion-textarea>
+        </ion-item>
+      </ion-list>
+      <button ion-button full icon-left (click)="onOpenCoordsModal()">
+        <ion-icon name="flag"></ion-icon>
+        Ajouter lieu
+      
+      </button>
+      <ion-list *ngIf="latitude">
+        <ion-item>
+          <p>Latitude : {{ latitude.toFixed(2) }} - Longitude : {{ longitude.toFixed(2) }}</p>
+        </ion-item>
+        <ion-item *ngIf="imageUrl">
+          <img [src]="imageUrl" style="max-width: 100%">
+          </ion-item>
+        </ion-list>
+        <div text-center>
+          <button ion-button round large icon-only (click)="onTakePhoto()">
+            <ion-icon name="camera"></ion-icon>
+          </button>
+        </div>
+        <button ion-button full (click)="onSubmitForm()" 
+      [disabled]="natureViewForm.invalid || !latitude || !imageUrl">Enregister</button>
+      </form>
+    </ion-content>
+  

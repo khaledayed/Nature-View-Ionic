@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { NatureView } from '../../models/NatureView.model';
 import { Subscription } from 'rxjs/Subscription';
 import { NatureViewService } from '../../services/natureView.service';
